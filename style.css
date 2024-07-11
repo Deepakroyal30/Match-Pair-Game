@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    width: 80%;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 10px;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    perspective: 1000px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    border-radius: 8px;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.card-front {
+    background-color: lightgreen;
+}
+
+.card-back {
+    background-color: black;
+    transform: rotateY(180deg);
+}
+
+.info-panel {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-panel p {
+    font-size: 20px;
+    margin: 0 0 10px;
+    padding: 0;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+#restart-btn {
+    background: white;
+    color: #ff5e62;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#restart-btn:hover {
+    background: #ff5e62;
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+#confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+@keyframes confetti-fall {
+    from {
+        transform: translateY(-100vh) rotate(0deg);
+    }
+    to {
+        transform: translateY(100vh) rotate(720deg);
+    }
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    animation: confetti-fall linear infinite;
+    /* Adjust animation speed to match the updated JavaScript */
+    animation-duration: 1.5s; 
+}
