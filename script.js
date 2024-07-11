@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const emojis = ["🍦", "🍩", "🍎", "🍌", "🍇", "🍉", "🍪", "🍫"];
+    const emojis = ["🍦", "🍩",  "🍌", "🍇", "🍉", "🍪", "🍫",
+                    "🍓", "🥝","🍋"];  
     let shuffledEmojis;
     const gameBoard = document.getElementById('game-board');
     const attemptsDisplay = document.getElementById('attempts');
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let lockBoard = false;
     let attempts = 0;
 
-    shuffledEmojis = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+    shuffledEmojis = emojis.concat(emojis).sort(() => Math.random() - 0.5); // Double the array for pairs
 
     function createCards() {
         gameBoard.innerHTML = '';
@@ -49,9 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
             lockBoard = true;
             checkForMatch();
         }
-
-        attempts++;
-        attemptsDisplay.textContent = attempts;
     }
 
     function checkForMatch() {
@@ -59,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isMatch) {
             disableCards();
+            attempts++;
+            attemptsDisplay.textContent = attempts;
             if (document.querySelectorAll('.card:not(.flipped)').length === 0) {
                 celebrate();
             }
@@ -77,6 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             firstCard.classList.remove('flipped');
             secondCard.classList.remove('flipped');
+            attempts++;
+            attemptsDisplay.textContent = attempts;
             resetBoard();
         }, 1000);
     }
@@ -93,11 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function confetti() {
-        for (let i = 0; i < 200; i++) { // Increase the number of confetti pieces
+        for (let i = 0; i < 200; i++) {
             const confettiPiece = document.createElement('div');
             confettiPiece.classList.add('confetti');
             confettiPiece.style.left = `${Math.random() * 100}%`;
-            confettiPiece.style.animationDuration = `${Math.random() * 2 + 1}s`; // Make the confetti fall faster
+            confettiPiece.style.animationDuration = `${Math.random() * 2 + 1}s`;
             confettiPiece.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
             confettiContainer.appendChild(confettiPiece);
         }
@@ -109,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lockBoard = false;
         firstCard = null;
         secondCard = null;
-        shuffledEmojis = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+        shuffledEmojis = emojis.concat(emojis).sort(() => Math.random() - 0.5); // Re-shuffle for a new game
         createCards();
         confettiContainer.innerHTML = '';
     }

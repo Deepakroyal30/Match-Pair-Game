@@ -14,10 +14,10 @@ body {
     flex-direction: column;
     align-items: center;
 }
-
 .game-board {
     display: grid;
     grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(5, 100px);
     grid-gap: 10px;
     justify-content: center;
     align-items: center;
@@ -27,6 +27,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
 }
+
 
 .card {
     width: 100px;
@@ -136,6 +137,35 @@ body {
     height: 10px;
     background-color: red;
     animation: confetti-fall linear infinite;
-    /* Adjust animation speed to match the updated JavaScript */
-    animation-duration: 1.5s; 
+    animation-duration: 1.5s;
+}
+
+/* Media Queries for Mobile View */
+@media (max-width: 600px) {
+    body {
+        width: 90%;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(2, 100px);
+        padding: 10px;
+    }
+
+    .card {
+        width: 80px;
+        height: 80px;
+    }
+
+    .info-panel {
+        padding: 10px;
+    }
+
+    .info-panel p {
+        font-size: 16px;
+    }
+
+    #restart-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
 }
