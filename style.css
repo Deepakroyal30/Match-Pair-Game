@@ -7,6 +7,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 .game-container {
@@ -14,10 +15,11 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 .game-board {
     display: grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: repeat(5, 100px);
+    grid-template-columns: repeat(6, 100px);
+    grid-template-rows: repeat(4, 100px);
     grid-gap: 10px;
     justify-content: center;
     align-items: center;
@@ -26,8 +28,8 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
+    max-width: 100%; /* Ensure grid doesn't exceed container width */
 }
-
 
 .card {
     width: 100px;
@@ -140,32 +142,40 @@ body {
     animation-duration: 1.5s;
 }
 
-/* Media Queries for Mobile View */
-@media (max-width: 600px) {
+
+@media (max-width: 425px) {
     body {
-        width: 90%;
+        width: 100%;
     }
 
     .game-board {
-        grid-template-columns: repeat(2, 100px);
+        grid-template-columns: repeat(6, 30px);
+        grid-template-rows: repeat(4, 30px);
+        grid-gap: 8px;
+        padding: 10px;
+    }
+
+    .card {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        width: 100%;
+    }
+
+    .game-board {
+        margin-top: 120px;
+        grid-template-columns: repeat(4, 80px);
+        grid-template-rows: repeat(6, 80px);
+        grid-gap: 8px;
         padding: 10px;
     }
 
     .card {
         width: 80px;
         height: 80px;
-    }
-
-    .info-panel {
-        padding: 10px;
-    }
-
-    .info-panel p {
-        font-size: 16px;
-    }
-
-    #restart-btn {
-        padding: 8px 16px;
-        font-size: 14px;
     }
 }

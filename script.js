@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const emojis = ["🍦", "🍩",  "🍌", "🍇", "🍉", "🍪", "🍫",
-                    "🍓", "🥝","🍋"];  
+    const emojis = ["😊", "🌟", "🎉", "🍕", "🎈", "🌸", "🚀", "🎸", "🍩", "📚", "❤️", "⚽️"];
+
+  
     let shuffledEmojis;
     const gameBoard = document.getElementById('game-board');
     const attemptsDisplay = document.getElementById('attempts');
@@ -10,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let lockBoard = false;
     let attempts = 0;
 
-    shuffledEmojis = emojis.concat(emojis).sort(() => Math.random() - 0.5); // Double the array for pairs
+    shuffledEmojis = emojis.concat(emojis).sort(() => Math.random() - 0.5); 
 
     function createCards() {
         gameBoard.innerHTML = '';
